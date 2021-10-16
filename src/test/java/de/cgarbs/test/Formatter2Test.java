@@ -37,7 +37,6 @@ public class Formatter2Test
 		String output = new MarkdownFormatter().toMarkdown(input);
 
 		// then
-		System.out.println(output);
 		assertThat(output).isEqualTo(TestData.EXPECTED_MARKDOWN);
 	}
 }
