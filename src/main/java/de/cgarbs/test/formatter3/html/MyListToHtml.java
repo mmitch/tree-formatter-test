@@ -5,7 +5,6 @@
 package de.cgarbs.test.formatter3.html;
 
 import de.cgarbs.test.tree.MyList;
-import de.cgarbs.test.tree.MyNode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -27,11 +26,5 @@ public class MyListToHtml implements ToHtml<MyList>
 	public Class<MyList> responsibleFor()
 	{
 		return MyList.class;
-	}
-
-	@Override
-	public void appendHtmlUntyped(StringBuilder html, MyNode list)
-	{
-		appendHtml(html, (MyList) list);
 	}
 }

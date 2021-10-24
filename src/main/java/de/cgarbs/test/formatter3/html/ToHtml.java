@@ -10,6 +10,4 @@ import de.cgarbs.test.tree.MyNode;
 public interface ToHtml<T extends MyNode> extends Formatter<T>
 {
 	void appendHtml(StringBuilder html, T node);
-
-	void appendHtmlUntyped(StringBuilder html, MyNode node);
 }

@@ -10,6 +10,4 @@ import de.cgarbs.test.tree.MyNode;
 public interface ToMarkdown<T extends MyNode> extends Formatter<T>
 {
 	void appendMarkdown(StringBuilder markdown, T node);
-
-	void appendMarkdownUntyped(StringBuilder markdown, MyNode node);
 }

@@ -4,12 +4,10 @@
  */
 package de.cgarbs.test.formatter3.html;
 
-import de.cgarbs.test.tree.MyNode;
 import de.cgarbs.test.tree.MyText;
 
 public class MyTextToHtml implements ToHtml<MyText>
 {
-
 	@Override
 	public void appendHtml(StringBuilder html, MyText text)
 	{
@@ -21,11 +19,4 @@ public class MyTextToHtml implements ToHtml<MyText>
 	{
 		return MyText.class;
 	}
-
-	@Override
-	public void appendHtmlUntyped(StringBuilder html, MyNode node)
-	{
-		appendHtml(html, (MyText) node);
-	}
-
 }

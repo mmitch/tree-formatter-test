@@ -28,6 +28,12 @@ public class FormatterSet<T extends Formatter>
 		return formatter;
 	}
 
+	public <U extends MyNode> void apply(U node, Class<U> nodeType)
+	{
+		T formatter = getFor(node);
+
+	}
+
 	@SuppressWarnings("unchecked")
 	public FormatterSet(Class<T> formatterBase)
 	{

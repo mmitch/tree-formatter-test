@@ -5,7 +5,6 @@
 package de.cgarbs.test.formatter3.html;
 
 import de.cgarbs.test.tree.MyLink;
-import de.cgarbs.test.tree.MyNode;
 
 public class MyLinkToHtml implements ToHtml<MyLink>
 {
@@ -22,12 +21,6 @@ public class MyLinkToHtml implements ToHtml<MyLink>
 	public Class<MyLink> responsibleFor()
 	{
 		return MyLink.class;
-	}
-
-	@Override
-	public void appendHtmlUntyped(StringBuilder html, MyNode link)
-	{
-		appendHtml(html, (MyLink) link);
 	}
 
 }

@@ -9,7 +9,8 @@ import de.cgarbs.test.tree.MyNode;
 
 public class HtmlFormatter
 {
-	private static final FormatterSet<ToHtml> formatters = new FormatterSet(ToHtml.class);
+	@SuppressWarnings("rawtypes")
+	private static final FormatterSet<ToHtml> formatters = new FormatterSet<ToHtml>(ToHtml.class);
 
 	public String toHtml(MyNode root)
 	{
@@ -18,8 +19,11 @@ public class HtmlFormatter
 		return html.toString();
 	}
 
-	static void appendHtml(StringBuilder html, MyNode node)
+	static <T extends MyNode> void appendHtml(StringBuilder html, T node)
 	{
-		formatters.getFor(node).appendHtmlUntyped(html, node);
+		@SuppressWarnings("unchecked")
+		ToHtml<T> formatter = formatters.getFor(node);
+		T typedNode = formatter.responsibleFor().cast(node);
+		formatter.appendHtml(html, typedNode);
 	}
 }

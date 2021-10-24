@@ -5,7 +5,6 @@
 package de.cgarbs.test.formatter3.markdown;
 
 import de.cgarbs.test.tree.MyList;
-import de.cgarbs.test.tree.MyNode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -25,11 +24,5 @@ public class MyListToMarkdown implements ToMarkdown<MyList>
 	public Class<MyList> responsibleFor()
 	{
 		return MyList.class;
-	}
-
-	@Override
-	public void appendMarkdownUntyped(StringBuilder markdown, MyNode list)
-	{
-		appendMarkdown(markdown, (MyList) list);
 	}
 }

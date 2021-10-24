@@ -5,7 +5,6 @@
 package de.cgarbs.test.formatter3.markdown;
 
 import de.cgarbs.test.tree.MyLink;
-import de.cgarbs.test.tree.MyNode;
 
 public class MyLinkToMarkdown implements ToMarkdown<MyLink>
 {
@@ -22,12 +21,6 @@ public class MyLinkToMarkdown implements ToMarkdown<MyLink>
 	public Class<MyLink> responsibleFor()
 	{
 		return MyLink.class;
-	}
-
-	@Override
-	public void appendMarkdownUntyped(StringBuilder markdown, MyNode link)
-	{
-		appendMarkdown(markdown, (MyLink) link);
 	}
 
 }
