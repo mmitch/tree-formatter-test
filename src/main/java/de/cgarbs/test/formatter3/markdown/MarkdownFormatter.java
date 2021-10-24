@@ -4,16 +4,13 @@
  */
 package de.cgarbs.test.formatter3.markdown;
 
-import de.cgarbs.test.tree.MyLink;
-import de.cgarbs.test.tree.MyList;
+import de.cgarbs.test.formatter3.FormatterSet;
 import de.cgarbs.test.tree.MyNode;
-import de.cgarbs.test.tree.MyText;
 
 public class MarkdownFormatter
 {
-	private final static MyLinkToMarkdown linkToMarkdown = new MyLinkToMarkdown();
-	private final static MyListToMarkdown listToMarkdown = new MyListToMarkdown();
-	private final static MyTextToMarkdown textToMarkdown = new MyTextToMarkdown();
+	@SuppressWarnings("rawtypes")
+	private static final FormatterSet<ToMarkdown> formatters = new FormatterSet<ToMarkdown>(ToMarkdown.class);
 
 	public String toMarkdown(MyNode root)
 	{
@@ -22,23 +19,11 @@ public class MarkdownFormatter
 		return markdown.toString();
 	}
 
-	static void appendMarkdown(StringBuilder markdown, MyNode node)
+	static <T extends MyNode> void appendMarkdown(StringBuilder markdown, T node)
 	{
-		if (node instanceof MyLink)
-		{
-			linkToMarkdown.appendMarkdown(markdown, (MyLink) node);
-		}
-		else if (node instanceof MyList)
-		{
-			listToMarkdown.appendMarkdown(markdown, (MyList) node);
-		}
-		else if (node instanceof MyText)
-		{
-			textToMarkdown.appendMarkdown(markdown, (MyText) node);
-		}
-		else
-		{
-			throw new RuntimeException("no handler for " + node.getClass());
-		}
+		@SuppressWarnings("unchecked")
+		ToMarkdown<T> formatter = formatters.getFor(node);
+		T typedNode = formatter.responsibleFor().cast(node);
+		formatter.appendMarkdown(markdown, typedNode);
 	}
 }
