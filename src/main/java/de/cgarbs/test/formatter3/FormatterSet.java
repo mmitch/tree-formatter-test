@@ -33,7 +33,7 @@ public class FormatterSet<T extends Formatter>
 	{
 		this.formatterBase = formatterBase;
 
-		try (ScanResult scanResult = new ClassGraph().enableClassInfo().scan())
+		try (ScanResult scanResult = new ClassGraph().acceptPackagesNonRecursive(formatterBase.getPackageName()).scan())
 		{
 			scanResult.getClassesImplementing(formatterBase).forEach(formatterClassInfo -> {
 				registerFormatter((Class<T>) formatterClassInfo.loadClass());
